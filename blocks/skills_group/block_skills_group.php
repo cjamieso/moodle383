@@ -109,7 +109,7 @@ class block_skills_group extends block_base {
                 } else {
                     $url = new moodle_url('/blocks/skills_group/lock_choice.php', array('courseid' => $COURSE->id,
                         'sesskey' => $USER->sesskey));
-                    $this->content->footer .= html_writer::link($url, get_string('lockgrouplink', BLOCK_SG_LANG_TABLE));
+                    $this->content->footer .= html_writer::link($url, get_string('lockgroup', BLOCK_SG_LANG_TABLE));
                     $this->content->footer .= html_writer::empty_tag('br');
                     if ($sgs->get_allowgroupview()) {
                         $url = new moodle_url('/blocks/skills_group/view_group.php', array('courseid' => $COURSE->id,

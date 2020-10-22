@@ -46,6 +46,7 @@ $sgrouping = new \block_skills_group\skills_grouping($courseid);
 $groupid = $sgrouping->check_for_user_in_grouping($USER->id);
 if ($groupid !== false) {
     $sgroup = new \block_skills_group\skills_group($groupid);
+    $toform['note'] = $sgroup->get_note();
     if ($sgroup->get_allow_others_to_join() === true) {
         $toform['allowjoincheck'] = 1;
     }
@@ -113,4 +114,17 @@ function update_allow_join($groupid, $allowjoin) {
     } else {
         $sgroup->set_allow_others_to_join(false);
     }
+}
+
+/**
+ * Small helper function that updates the note field for the group.
+ *
+ * @param int $groupid The ID of the group to update
+ * @param string $note the note for the group
+ *
+ */
+function update_note($groupid, $note) {
+
+    $sgroup = new \block_skills_group\skills_group($groupid);
+    $sgroup->set_note($note);
 }

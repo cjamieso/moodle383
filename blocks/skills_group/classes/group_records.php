@@ -66,7 +66,8 @@ class group_records {
                 if ($sgroup->get_allow_others_to_join() === true || $sgs->get_instructorgroups() === true) {
                     $scores = ($sgs->get_feedback_id() == 0) ? array() : $sgroup->get_join_form_score();
                     $name = $sgroup->get_group_name();
-                    $temp = array('id' => $group->groupid, 'name' => $name, 'size' => $sgroup->count_members()) + $scores;
+                    $temp = array('id' => $group->groupid, 'name' => $name, 'size' => $sgroup->count_members(),
+                        'note' => $sgroup->get_note()) + $scores;
                     $tablerows[] = $temp;
                 }
             }

@@ -95,6 +95,20 @@ class test_skillsgroup extends skills_group_unit_test {
     }
 
     /**
+     * This function tests the getter/setter for the note field.
+     *
+     */
+    public function test_note() {
+        global $DB;
+
+        $sgroup = new \block_skills_group\skills_group($this->groupids[0]);
+        $this->assertEquals($sgroup->get_note(), "");
+        $sgroup->set_note("Group 1, Project 1");
+        $note = $DB->get_field('skills_group', 'note', array('groupid' => $this->groupids[0]));
+        $this->assertEquals($note, "Group 1, Project 1");
+    }
+
+    /**
      * This function checks to see if the correct group members are returned.  Again,
      * it is assumed that the list is sorted numerically.
      *

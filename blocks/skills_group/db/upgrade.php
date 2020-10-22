@@ -228,5 +228,18 @@ function xmldb_block_skills_group_upgrade($oldversion=0) {
         upgrade_block_savepoint(true, 2018072401, 'skills_group');
     }
 
+    // On Oct. 21, 2020, I added the note field to the group table
+    if ($oldversion < 2020102100) {
+
+        $table = new xmldb_table('skills_group');
+        $field = new xmldb_field('note', XMLDB_TYPE_TEXT, 'big', null, null, null, null);
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Update savepoint.
+        upgrade_block_savepoint(true, 2020102100, 'skills_group');
+    }
+
     return $result;
 }

@@ -118,6 +118,8 @@ class create_skills_group_form extends \moodleform {
                 array(0, 1));
             $mform->disabledIf('allowjoincheck', 'leavegroup', 'checked');
         }
+        $mform->addElement('text', 'note', get_string('groupnote', BLOCK_SG_LANG_TABLE));
+        $mform->setType('note', PARAM_TEXT);
     }
 
     /**
@@ -202,6 +204,8 @@ class create_skills_group_form extends \moodleform {
                 $mform->setType('type', PARAM_TEXT);
                 $mform->addElement('advcheckbox', 'allowjoincheck', get_string('groupsearchable', BLOCK_SG_LANG_TABLE), null, null,
                     array(0, 1));
+                $mform->addElement('text', 'note', get_string('groupnote', BLOCK_SG_LANG_TABLE));
+                $mform->setType('note', PARAM_TEXT);
             }
         }
     }
@@ -241,6 +245,7 @@ class create_skills_group_form extends \moodleform {
             $groupname = (isset($submittedform->creategroup)) ? $submittedform->creategroup : null;
             $groupid = $sgrouping->create_group($groupname);
             update_allow_join($groupid, $submittedform->allowjoincheck);
+            update_note($groupid, $submittedform->note);
             $url = new \moodle_url('/blocks/skills_group/create_skills_group.php', array('courseid' => $this->courseid,
                 'sesskey' => $USER->sesskey));
             // Logging create group action.
@@ -289,6 +294,7 @@ class create_skills_group_form extends \moodleform {
         if (isset($submittedform->allowjoincheck)) {
             update_allow_join($groupid, $submittedform->allowjoincheck);
         }
+        update_note($groupid, $submittedform->note);
         // Only process group additions of permitted.
         $sgs = new skills_group_setting($this->courseid);
         if ($sgs->get_allowadding()) {

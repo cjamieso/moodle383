@@ -46,7 +46,7 @@ $string['notconfiguredleft'] = 'Settings not yet configured.';
 $string['notconfiguredright'] = 'Please check later.';
 $string['dateexpired'] = 'Date for creating groups expired.  Please contact your instructor for assistance';
 $string['dateexpiredleft'] = 'Date expired.';
-$string['dateexpiredright'] = 'Please contact your instructor for assistance in joining a group';
+$string['dateexpiredright'] = 'Please contact your instructor for assistance';
 $string['groupexpired'] = 'Group creation expired';
 
 // Labels/Strings for Settings Edit page.
@@ -127,14 +127,12 @@ $string['groupsearchable'] = 'Allow classmates to search for group';
 $string['groupautoname'] = 'Team';
 $string['gojoingroupleft'] = 'No group: ';
 $string['gojoingroupright'] = 'Return to main course page and join a group.';
+$string['groupnote'] = 'Group note: ';
 
 // Lock choice page.
-$string['warning'] = 'Warning:';
-$string['lockchoicewarning'] = 'Locking your choice will prevent YOU from making any further changes.  All group members must individually lock-in.  This is considered your FINAL acceptance.';
 $string['lockchoiceheader'] = 'Lock Group Choice';
 $string['lockchoicetitle'] = 'Lock Group Choice';
-$string['lockgrouplink'] = 'Lock my group choice';
-$string['lockchoice'] = 'Consent to choice';
+$string['lockgroup'] = 'Lock my group choice';
 $string['status'] = 'Status:';
 $string['choicelocked'] = 'You have already locked in your group selection.';
 
@@ -169,6 +167,7 @@ $string['joingroup'] = 'Join a Group';
 $string['joingroupbutton'] = 'Join Group';
 $string['refreshgroupsbutton'] = 'Refresh Groups';
 $string['numberofmembers'] = 'Number of members';
+$string['note'] = 'Note';
 
 // View group page.
 $string['viewskillsgroup'] = 'View group';

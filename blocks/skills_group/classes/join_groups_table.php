@@ -51,10 +51,12 @@ class join_groups_table extends \table_sql {
         $columns[] = 'join';
         $columns[] = 'name';
         $columns[] = 'size';
+        $columns[] = 'note';
         $columns = array_merge($columns, array_keys($skillslist));
         $headers[] = get_string('join', BLOCK_SG_LANG_TABLE);
         $headers[] = get_string('name');
         $headers[] = get_string('numberofmembers', BLOCK_SG_LANG_TABLE);
+        $headers[] = get_string('note', BLOCK_SG_LANG_TABLE);
         $headers = array_merge($headers, array_values($skillslist));
 
         $this->define_columns($columns);

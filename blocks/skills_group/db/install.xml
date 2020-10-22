@@ -23,11 +23,12 @@
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
       </KEYS>
     </TABLE>
-    <TABLE NAME="skills_group" COMMENT="This table contains information about whether others can join a group" PREVIOUS="skills_group_settings" NEXT="skills_group_student">
+    <TABLE NAME="skills_group" COMMENT="This table contains information about the group" PREVIOUS="skills_group_settings" NEXT="skills_group_student">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="groupid"/>
         <FIELD NAME="groupid" TYPE="int" LENGTH="20" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="id" NEXT="allowjoin"/>
-        <FIELD NAME="allowjoin" TYPE="int" LENGTH="20" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="groupid"/>
+        <FIELD NAME="allowjoin" TYPE="int" LENGTH="20" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="groupid" NEXT="note"/>
+        <FIELD NAME="note" TYPE="text" LENGTH="big" NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="allowjoin"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

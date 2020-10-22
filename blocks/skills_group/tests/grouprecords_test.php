@@ -72,6 +72,7 @@ class test_grouprecords extends skills_group_unit_test {
         foreach ($rows as $row) {
             $this->assertEquals($row['id'], $this->groupids[$i]);
             $this->assertEquals($row['size'], 2);
+            $this->assertEquals($row['note'], "Group 1, Project 1");
             for ($j = 1; $j <= self::FEEDBACKITEMS; $j++) {
                 $this->assertEquals($row[$j], $testscores[$i]);
             }
@@ -110,6 +111,7 @@ class test_grouprecords extends skills_group_unit_test {
         for ($i = 0; $i < self::NUMBEROFGROUPS; $i++) {
             $sgroup = new \block_skills_group\skills_group($this->groupids[$i]);
             $sgroup->set_allow_others_to_join(true);
+            $sgroup->set_note("Group 1, Project 1");
         }
     }
 

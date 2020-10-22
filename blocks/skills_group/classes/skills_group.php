@@ -122,8 +122,6 @@ class skills_group {
      * This function updates the flag that determines whether others can join this
      * group.  There are several different cases, depending on the new status of the flag.
      *
-     * @param bool $allowjoin Indicates whether students should be allowed to join.
-     *
      */
     public function set_allow_others_to_join($allowjoin) {
         global $DB;
@@ -146,6 +144,48 @@ class skills_group {
             if ($record !== false) {
                 $record->allowjoin = 0;
                 $DB->update_record('skills_group', $record);
+            }
+        }
+    }
+
+    /**
+     * This function returns a note associated with the group
+     *
+     * @return string note for group
+     *
+     */
+    public function get_note() {
+        global $DB;
+
+        $note = $DB->get_field('skills_group', 'note', array('groupid' => $this->groupid));
+        if ($note !== false) {
+            return $note;
+        } else {
+            // If no setting exists, return null (safe default).
+            return null;
+        }
+    }
+
+    /**
+     * This function updates the note for the group
+     *
+     * @param bool $allowjoin Indicates whether students should be allowed to join.
+     *
+     */
+    public function set_note($note) {
+        global $DB;
+
+        $record = $DB->get_record('skills_group', array('groupid' => $this->groupid));
+        if ($record !== false) {
+            $record->note = $note;
+            $DB->update_record('skills_group', $record);
+        } else {
+            $record = new \stdClass;
+            $record->groupid = $this->groupid;
+            $record->allowjoin = 0;
+            $record->note = $note;
+            if (!$DB->insert_record('skills_group', $record)) {
+                print_error(get_string('dberror', BLOCK_SG_LANG_TABLE));
             }
         }
     }

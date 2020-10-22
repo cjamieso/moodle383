@@ -66,20 +66,18 @@ class lock_choice_form extends \moodleform {
             $sgrouping = new skills_grouping($this->courseid);
             $groupid = $sgrouping->check_for_user_in_grouping($USER->id);
             if ($groupid !== false) {
-                $sgroup = new skills_group($groupid);
-                $mform->addElement('static', 'existinggroup', get_string('existinggroup', BLOCK_SG_LANG_TABLE),
-                                   $sgroup->get_group_name());
-                // Only display checkbox if student's choice isn't already locked.
-                $student = new skills_group_student($this->courseid, $USER->id);
-                if ($student->get_lock_choice() === true) {
-                    $mform->addElement('static', 'lockchoicewarning', get_string('status', BLOCK_SG_LANG_TABLE),
-                                       get_string('choicelocked', BLOCK_SG_LANG_TABLE));
+                if ($sgs->date_restriction() && time() > $sgs->get_date()) {
+                    $mform->addElement('static', 'dateexpired', get_string('dateexpiredleft', BLOCK_SG_LANG_TABLE),
+                               get_string('dateexpiredright', BLOCK_SG_LANG_TABLE));
                 } else {
-                    $mform->addElement('advcheckbox', 'lockchoice', get_string('lockchoice', BLOCK_SG_LANG_TABLE), null,
-                                                        null, array(0, 1));
+                    $sgroup = new skills_group($groupid);
+                    $mform->addElement('static', 'existinggroup', get_string('existinggroup', BLOCK_SG_LANG_TABLE),
+                                       $sgroup->get_group_name());
+                    // Only display checkbox if student's choice isn't already locked.
+                    $student = new skills_group_student($this->courseid, $USER->id);
+                    $mform->addElement('advcheckbox', 'lockchoice', get_string('lockgroup', BLOCK_SG_LANG_TABLE), null, null,
+                        array(0, 1));
                 }
-                $mform->addElement('static', 'lockchoicewarning', get_string('warning', BLOCK_SG_LANG_TABLE),
-                                   get_string('lockchoicewarning', BLOCK_SG_LANG_TABLE));
             } else {
                 $mform->addElement('static', 'existinggroup', get_string('existinggroup', BLOCK_SG_LANG_TABLE),
                                    get_string('nogroup', BLOCK_SG_LANG_TABLE));

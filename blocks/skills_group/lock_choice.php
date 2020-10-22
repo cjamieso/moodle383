@@ -42,6 +42,8 @@ block_skills_group_setup_page($courseid, $url, get_string('lockchoicetitle', BLO
 
 $lockchoiceform = new \block_skills_group\lock_choice_form($courseid);
 $toform['courseid'] = $courseid;
+$student = new \block_skills_group\skills_group_student($courseid, $USER->id);
+$toform['lockchoice'] = ($student->get_lock_choice() === true) ? 1 : 0;
 $lockchoiceform->set_data($toform);
 
 if ($lockchoiceform->is_cancelled()) {
@@ -73,6 +75,10 @@ function process_form($courseid, &$submittedform) {
         if ($submittedform->lockchoice) {
             $student = new \block_skills_group\skills_group_student($courseid, $USER->id);
             $student->set_lock_choice(true);
+            $url = new moodle_url('/course/view.php', array('id' => $courseid));
+        } else {
+            $student = new \block_skills_group\skills_group_student($courseid, $USER->id);
+            $student->set_lock_choice(false);
             $url = new moodle_url('/course/view.php', array('id' => $courseid));
         }
     } else {

@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version            = 2018072401;
+$plugin->version            = 2020102100;
 $plugin->component          = 'block_skills_group';
 $plugin->requires           = 2017111301;
 $plugin->cron               = 0;

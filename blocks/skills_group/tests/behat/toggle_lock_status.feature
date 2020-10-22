@@ -67,5 +67,5 @@ Feature: Toggle a student's group lock
     And I log in as "student1"
     And I am on "Course 1" course homepage
     And I click on "Lock my group choice" "link"
-    Then I should not see "Status"
-    And I should see "Consent to choice"
+    Then the following fields match these values:
+      | lockchoice | 0 |

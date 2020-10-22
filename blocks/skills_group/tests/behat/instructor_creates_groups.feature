@@ -86,7 +86,7 @@ Feature: Use instructor created groups
     Then I should see "Team 10"
     And I should not see "Team 11"
     And I should not see "Team 12"
-    When I click on "2" "link"
+    When I click on "//a[contains(@aria-label, 'Next')]" "xpath_element"
     Then I should not see "Team 10"
     And I should see "Team 11"
     And I should see "Team 12"

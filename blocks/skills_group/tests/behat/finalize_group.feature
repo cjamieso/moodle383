@@ -66,20 +66,13 @@ Feature: Finalize group choice
       | lockchoice | 1 |
     When I click on "#id_submitbutton" "css_element"
     And I click on "Lock my group choice" "link"
-    Then I should see "You have already locked in your group selection."
-    And I am on "Course 2" course homepage
+    Then the following fields match these values:
+      | lockchoice | 1 |
+    When I am on "Course 2" course homepage
     And I click on "Lock my group choice" "link"
-    Then I should see "Team Awesome"
-    And I should not see "You have already locked in your group selection."
-
-  @javascript
-  Scenario: View lock page, but do not finalize
-    And I log in as "student1"
-    And I am on "Course 1" course homepage
-    And I click on "Lock my group choice" "link"
-    Then I should see "Team Awesome"
     And I set the following fields to these values:
       | lockchoice | 0 |
     When I click on "#id_submitbutton" "css_element"
-    # "Consent to choice" only appears if student has not locked.
-    Then I should see "Consent to choice"
+    And I click on "Lock my group choice" "link"
+    Then the following fields match these values:
+      | lockchoice | 0 |

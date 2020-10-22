@@ -48,6 +48,7 @@ Feature: Create a group
     When I click on "#id_submitbutton" "css_element"
     Then I should see "Add Users to Group"
     And the field "allowjoincheck" matches value ""
+    And the field "note" matches value ""
 
   @javascript
   Scenario: Create a group with blank name
@@ -75,3 +76,17 @@ Feature: Create a group
     When I click on "#id_submitbutton" "css_element"
     Then I should see "Add Users to Group"
     And the field "allowjoincheck" matches value "1"
+
+  @javascript
+  Scenario: Set a note
+    And I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I click on "Create/Edit a group" "link"
+    Then I should see "None"
+    Given I set the following fields to these values:
+      | creategroupcheck | 1 |
+      | creategroup | Test Group |
+      | note | Group 1, Project 1 |
+    When I click on "#id_submitbutton" "css_element"
+    Then I should see "Add Users to Group"
+    And the field "note" matches value "Group 1, Project 1"
