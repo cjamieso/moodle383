@@ -255,7 +255,6 @@ body.jsenabled #toggle-all, body.jsenabled #collblct-display-instructions {
 .accordion .outer {
     border:1px solid #dadada;
     border-width:0 1px 1px;
-    background: #fff;
 }
 .accordion .inner {
     margin-bottom:0;
